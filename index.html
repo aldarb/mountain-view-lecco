@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Apartment with Mountain View - Guest Guide</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        brand: { 50: '#ecfdf5', 100: '#d1fae5', 500: '#10b981', 600: '#059669', 900: '#064e3b' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; }
+        body { background-color: #f7f7f9; overscroll-behavior-y: none; padding-bottom: 90px; }
+        .tab-content { display: none; animation: fadeIn 0.3s ease-in-out; }
+        .tab-content.active { display: block; }
+        .nav-active { color: #059669; }
+        .nav-inactive { color: #9ca3af; }
+        .hide-scroll::-webkit-scrollbar { display: none; }
+        .hide-scroll { -ms-overflow-style: none; scrollbar-width: none; }
+        .pb-safe { padding-bottom: env(safe-area-inset-bottom, 16px); }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* Custom Select Styling */
+        select { appearance: none; background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23FFFFFF%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"); background-repeat: no-repeat; background-position: right .7em top 50%; background-size: .65em auto; }
+    </style>
+</head>
+<body class="text-gray-800 antialiased max-w-md mx-auto relative shadow-2xl min-h-screen bg-white">
+
+    <!-- Header Section -->
+    <header class="relative w-full h-64 bg-gray-900 rounded-b-3xl overflow-hidden shadow-sm">
+        <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=1200" alt="Mountain View" class="absolute inset-0 w-full h-full object-cover opacity-70">
+        <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40 to-transparent"></div>
+        
+        <!-- Language Selector -->
+        <div class="absolute top-4 right-4 z-20">
+            <select id="lang-select" onchange="changeLanguage(this.value)" class="bg-black/40 backdrop-blur-md text-white text-xs font-semibold py-2 pl-3 pr-8 rounded-full border border-white/20 focus:outline-none focus:ring-2 focus:ring-brand-500 cursor-pointer">
+                <option value="en" class="text-black">🇬🇧 EN</option>
+                <option value="it" class="text-black">🇮🇹 IT</option>
+                <option value="es" class="text-black">🇪🇸 ES</option>
+                <option value="fr" class="text-black">🇫🇷 FR</option>
+                <option value="de" class="text-black">🇩🇪 DE</option>
+                <option value="pl" class="text-black">🇵🇱 PL</option>
+                <option value="ru" class="text-black">🇷🇺 RU</option>
+                <option value="uk" class="text-black">🇺🇦 UK</option>
+            </select>
+        </div>
+
+        <div class="absolute bottom-0 left-0 p-6 w-full">
+            <h1 class="text-3xl font-bold text-white mb-1 leading-tight tracking-tight" data-i18n="title">Apartment with<br>Mountain View</h1>
+            <p class="text-gray-200 text-sm flex items-center gap-1 mt-2 font-medium">
+                <i class="ph-fill ph-map-pin text-brand-500"></i> <span data-i18n="address">Via Santo Stefano 13, Lecco</span>
+            </p>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="px-4 pt-6 bg-[#f7f7f9] h-full">
+
+        <!-- TAB: ARRIVAL -->
+        <section id="tab-arrival" class="tab-content active space-y-5">
+            <div class="flex bg-white rounded-2xl p-4 shadow-sm border border-gray-100 gap-4 divide-x divide-gray-100">
+                <div class="flex-1 text-center">
+                    <p class="text-[11px] text-gray-500 uppercase tracking-wider mb-1 font-semibold" data-i18n="checkInLabel">Check-in</p>
+                    <p class="font-bold text-xl text-gray-900" data-i18n="checkInTime">From 15:00</p>
+                </div>
+                <div class="flex-1 text-center">
+                    <p class="text-[11px] text-gray-500 uppercase tracking-wider mb-1 font-semibold" data-i18n="checkOutLabel">Check-out</p>
+                    <p class="font-bold text-xl text-gray-900" data-i18n="checkOutTime">By 11:00</p>
+                </div>
+            </div>
+
+            <!-- Bus Info (NEW) -->
+            <a href="https://maps.app.goo.gl/ypK6fDePbqvzoHs66" target="_blank" class="block bg-blue-50 rounded-2xl p-4 shadow-sm border border-blue-100 transition hover:bg-blue-100">
+                <h3 class="font-bold text-blue-900 flex items-center gap-2 mb-2">
+                    <i class="ph-fill ph-bus text-xl"></i> <span data-i18n="busInfoTitle">Bus from Train Station</span>
+                </h3>
+                <p class="text-sm text-blue-800 leading-relaxed mb-2" data-i18n="busInfoText">
+                    <strong>Bus number 2 and 8</strong> are the shortest. Bus 5 goes around the city.
+                </p>
+                <div class="flex items-center gap-1 text-xs font-bold text-blue-600 uppercase tracking-wide">
+                    <span data-i18n="openMap">Open Route in Maps</span> <i class="ph-bold ph-arrow-up-right"></i>
+                </div>
+            </a>
+
+            <!-- ID Registration (NEW) -->
+            <div class="bg-amber-50 rounded-2xl p-5 shadow-sm border border-amber-200">
+                <h3 class="font-bold text-amber-900 text-lg mb-2 flex items-center gap-2">
+                    <i class="ph-fill ph-identification-card text-amber-600 text-xl"></i> <span data-i18n="idRegTitle">Mandatory ID Registration</span>
+                </h3>
+                <p class="text-sm text-amber-800 mb-4 leading-relaxed" data-i18n="idRegText">
+                    According to Italian law, please send IDs or passports for all guests to register on the police platform.
+                </p>
+                <a href="https://wa.me/393890994681" target="_blank" class="flex items-center justify-center gap-2 w-full bg-[#25D366] text-white font-bold py-3 px-4 rounded-xl shadow-sm hover:bg-[#20bd5a] transition">
+                    <i class="ph-fill ph-whatsapp-logo text-xl"></i> <span data-i18n="idRegBtn">Send via WhatsApp</span>
+                </a>
+            </div>
+
+            <!-- Entry Instructions -->
+            <div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
+                <h2 class="text-xl font-bold mb-5 flex items-center gap-2 text-gray-900">
+                    <i class="ph-fill ph-door text-brand-500"></i> <span data-i18n="entryTitle">How to Enter</span>
+                </h2>
+                <ol class="space-y-5 relative border-l-2 border-gray-100 ml-3">
+                    <li class="pl-6 relative">
+                        <span class="absolute -left-[9px] top-1 w-4 h-4 bg-brand-100 rounded-full border-2 border-brand-500"></span>
+                        <p class="font-bold text-gray-900" data-i18n="step1">1. Intercom</p>
+                        <p class="text-sm text-gray-600 mt-1 leading-relaxed" data-i18n="step1Text">Ring the intercom marked <strong>"Posta"</strong> to unlock the building door.</p>
+                    </li>
+                    <li class="pl-6 relative">
+                        <span class="absolute -left-[9px] top-1 w-4 h-4 bg-brand-100 rounded-full border-2 border-brand-500"></span>
+                        <p class="font-bold text-gray-900" data-i18n="step2">2. Go to 4th Floor</p>
+                        <p class="text-sm text-gray-600 mt-1 leading-relaxed" data-i18n="step2Text">Take the lift to the 4th floor. The apartment is directly in front of the stairs.</p>
+                    </li>
+                    <li class="pl-6 relative">
+                        <span class="absolute -left-[9px] top-1 w-4 h-4 bg-brand-100 rounded-full border-2 border-brand-500"></span>
+                        <p class="font-bold text-gray-900" data-i18n="step3">3. Smart Lock Keypad</p>
+                        <p class="text-sm text-gray-600 mt-1 leading-relaxed" data-i18n="step3Text">Ask your host for the entry code. Inside you'll find the physical keys for the bottom door.</p>
+                        <div class="mt-2 bg-gray-50 p-3 rounded-lg border border-gray-200 text-xs text-gray-600 flex items-center gap-2">
+                            <i class="ph-fill ph-lock-key text-gray-900 text-lg"></i>
+                            <span data-i18n="step3Lock">To lock the door, press the <strong>triangle button (▲)</strong> on the keypad.</span>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- TAB: RULES -->
+        <section id="tab-rules" class="tab-content space-y-5">
+            <!-- Emergency -->
+            <div class="bg-red-50 rounded-2xl shadow-sm border border-red-100 p-4 flex items-center justify-between">
+                <div>
+                    <h2 class="text-sm font-bold text-red-700 flex items-center gap-1 mb-1">
+                        <i class="ph-fill ph-siren"></i> <span data-i18n="emergencyTitle">Emergency (Police/Ambulance)</span>
+                    </h2>
+                    <p class="text-2xl font-black text-red-700">112</p>
+                </div>
+                <a href="tel:112" class="w-12 h-12 bg-red-600 text-white rounded-full flex items-center justify-center shadow-md">
+                    <i class="ph-fill ph-phone text-2xl"></i>
+                </a>
+            </div>
+
+            <!-- Garbage Separation -->
+            <div class="bg-brand-50 rounded-2xl shadow-sm border border-brand-200 p-5">
+                <h3 class="font-bold text-brand-900 text-lg mb-2 flex items-center gap-2">
+                    <i class="ph-fill ph-recycle text-brand-600 text-xl"></i> <span data-i18n="garbageTitle">Garbage Separation</span>
+                </h3>
+                <p class="text-sm text-brand-800 mb-4 leading-relaxed" data-i18n="garbageText">
+                    Lecco requires strict recycling. You <strong>MUST</strong> take separated trash to the condominium bins located in the <strong>inside courtyard</strong>.
+                </p>
+                <div class="grid grid-cols-3 gap-2 text-center">
+                    <div class="bg-white p-2 rounded-xl border border-brand-100 shadow-sm flex flex-col items-center justify-center">
+                        <i class="ph-fill ph-wine text-emerald-600 text-2xl mb-1"></i>
+                        <p class="text-[10px] font-bold text-gray-800 uppercase" data-i18n="glass">Glass</p>
+                    </div>
+                    <div class="bg-white p-2 rounded-xl border border-brand-100 shadow-sm flex flex-col items-center justify-center">
+                        <i class="ph-fill ph-leaf text-amber-600 text-2xl mb-1"></i>
+                        <p class="text-[10px] font-bold text-gray-800 uppercase" data-i18n="bio">Bio/Organic</p>
+                    </div>
+                    <div class="bg-white p-2 rounded-xl border border-brand-100 shadow-sm flex flex-col items-center justify-center">
+                        <i class="ph-fill ph-newspaper text-blue-600 text-2xl mb-1"></i>
+                        <p class="text-[10px] font-bold text-gray-800 uppercase" data-i18n="paper">Paper</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- General Rules -->
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 mb-4">
+                <h3 class="font-bold text-gray-900 text-lg mb-4 flex items-center gap-2">
+                    <i class="ph-fill ph-clipboard-text text-gray-500 text-xl"></i> <span data-i18n="rulesTitle">House Rules</span>
+                </h3>
+                <ul class="space-y-4 text-sm">
+                    <li class="flex gap-3">
+                        <i class="ph-fill ph-cigarette-slash text-red-500 text-xl shrink-0"></i>
+                        <div>
+                            <p class="font-bold text-gray-900" data-i18n="noSmoking">No Smoking</p>
+                            <p class="text-gray-600 mt-0.5" data-i18n="noSmokingText">Strictly prohibited inside.</p>
+                        </div>
+                    </li>
+                    <li class="flex gap-3">
+                        <i class="ph-fill ph-drop text-blue-500 text-xl shrink-0"></i>
+                        <div>
+                            <p class="font-bold text-gray-900" data-i18n="towels">Towels</p>
+                            <p class="text-gray-600 mt-0.5" data-i18n="towelsText">Do not use towels to clean anything other than bodies.</p>
+                        </div>
+                    </li>
+                    <li class="flex gap-3">
+                        <i class="ph-fill ph-sparkle text-amber-500 text-xl shrink-0"></i>
+                        <div>
+                            <p class="font-bold text-gray-900" data-i18n="cleanliness">Cleanliness</p>
+                            <p class="text-gray-600 mt-0.5" data-i18n="cleanlinessText">Leave the apartment as clean as possible. Extra dirty apartments may be subject to additional fees.</p>
+                        </div>
+                    </li>
+                    <li class="flex gap-3">
+                        <i class="ph-fill ph-moon-stars text-indigo-500 text-xl shrink-0"></i>
+                        <div>
+                            <p class="font-bold text-gray-900" data-i18n="quietHours">Quiet Hours</p>
+                            <p class="text-gray-600 mt-0.5" data-i18n="quietHoursText">Please respect quiet hours from 22:00 to 08:00.</p>
+                        </div>
+                    </li>
+                    <li class="flex gap-3">
+                        <i class="ph-fill ph-thermometer text-orange-500 text-xl shrink-0"></i>
+                        <div>
+                            <p class="font-bold text-gray-900" data-i18n="heating">Heating</p>
+                            <p class="text-gray-600 mt-0.5" data-i18n="heatingText">Italian Zone E heating laws apply.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- TAB: GUIDE -->
+        <section id="tab-guide" class="tab-content space-y-6">
+            <div class="mb-2">
+                <h2 class="text-2xl font-bold text-gray-900" data-i18n="guideTitle">Lecco Guide</h2>
+            </div>
+
+            <!-- 1. The Icons -->
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden divide-y divide-gray-100">
+                <div class="p-4 bg-gray-50"><h3 class="font-bold text-gray-900 flex items-center gap-2" data-i18n="catIcons"><i class="ph-fill ph-mountains text-brand-500"></i> The Icons</h3></div>
+                <a href="https://www.google.com/maps/search/?api=1&query=Lungolago+di+Lecco" target="_blank" class="flex items-center justify-between p-4 hover:bg-gray-50 transition">
+                    <div><p class="font-bold text-gray-900">Lungolago di Lecco</p><p class="text-xs text-gray-500">Beautiful lakeside promenade</p></div>
+                    <i class="ph-bold ph-arrow-up-right text-brand-500"></i>
+                </a>
+                <a href="https://maps.app.goo.gl/DRvJ58APhAWqbziY6" target="_blank" class="flex items-center justify-between p-4 hover:bg-gray-50 transition">
+                    <div><p class="font-bold text-gray-900">Pontevecchio</p><p class="text-xs text-gray-500">Medieval Azzone Visconti Bridge</p></div>
+                    <i class="ph-bold ph-arrow-up-right text-brand-500"></i>
+                </a>
+                <a href="https://www.google.com/maps/search/?api=1&query=Campanile+di+San+Nicol%C3%B2+Lecco" target="_blank" class="flex items-center justify-between p-4 hover:bg-gray-50 transition">
+                    <div><p class="font-bold text-gray-900">Matitone</p><p class="text-xs text-gray-500">Campanile di San Nicolò</p></div>
+                    <i class="ph-bold ph-arrow-up-right text-brand-500"></i>
+                </a>
+                <a href="https://maps.app.goo.gl/j181v3zYytJMPmgR7" target="_blank" class="flex items-center justify-between p-4 hover:bg-gray-50 transition">
+                    <div><p class="font-bold text-gray-900">Piani di bobbio</p><p class="text-xs text-gray-500">Skiing & Hiking</p></div>
+                    <i class="ph-bold ph-arrow-up-right text-brand-500"></i>
+                </a>
+                <a href="https://www.google.com/maps/search/?api=1&query=Piani+d'Erna+Lecco" target="_blank" class="flex items-center justify-between p-4 hover:bg-gray-50 transition">
+                    <div><p class="font-bold text-gray-900">Piani d'Erna</p><p class="text-xs text-gray-500">Mountain plateau & cable car</p></div>
+                    <i class="ph-bold ph-arrow-up-right text-brand-500"></i>
+                </a>
+            </div>
+
+            <!-- 2. Hidden Gems -->
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden divide-y divide-gray-100">
+                <div class="p-4 bg-purple-50"><h3 class="font-bold text-purple-900 flex items-center gap-2" data-i18n="catGems"><i class="ph-fill ph-diamond text-purple-500"></i> Hidden Gems</h3></div>
+                <a href="https://maps.app.goo.gl/VRjCK9C8mPEovgt96" target="_blank" class="flex items-center justify-between p-4 hover:bg-gray-50 transition">
+                    <div><p class="font-bold text-gray-900">Pescarenico</p><p class="text-xs text-gray-500">Old fishing district</p></div>
+                    <i class="ph-bold ph-arrow-up-right text-purple-500"></i>
+                </a>
+                <a href="https://maps.app.goo.gl/BkCJN6ZmuU7W9FjU6" target="_blank" class="flex items-center justify-between p-4 hover:bg-gray-50 transition">
+                    <div><p class="font-bold text-gray-900">Palazzo delle Paure</p><p class="text-xs text-gray-500">Modern art & mountaineering museum</p></div>
+                    <i class="ph-bold ph-arrow-up-right text-purple-500"></i>
+                </a>
+                <a href="https://maps.app.goo.gl/h46FkQKBCYcQrprn7" target="_blank" class="flex items-center justify-between p-4 hover:bg-gray-50 transition">
+                    <div><p class="font-bold text-gray-900">Lungolago di Malgrate</p><p class="text-xs text-gray-500">Beautiful views & sand beach</p></div>
+                    <i class="ph-bold ph-arrow-up-right text-purple-500"></i>
+                </a>
+            </div>
+
+            <!-- 3. Authentic & Traditional Food -->
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden divide-y divide-gray-100">
+                <div class="p-4 bg-orange-50"><h3 class="font-bold text-orange-900 flex items-center gap-2" data-i18n="catAuthFood"><i class="ph-fill ph-fork-knife text-orange-500"></i> Authentic & Traditional Food</h3></div>
+                <a href="https://maps.app.goo.gl/pdhTXNcKuZBWYYio6" target="_blank" class="flex items-center justify-between p-4 hover:bg-gray-50 transition">
+                    <div><p class="font-bold text-gray-900">Ristorante Pontile Orestino</p><p class="text-xs text-gray-500">Classic lake fish (perch risotto)</p></div>
+                    <i class="ph-bold ph-arrow-up-right text-orange-500"></i>
+                </a>
+                <a href="https://maps.app.goo.gl/5yPai5zW6MSYvFTv9" target="_blank" class="flex items-center justify-between p-4 hover:bg-gray-50 transition">
+                    <div><p class="font-bold text-gray-900">Usteria Lecco</p><p class="text-xs text-gray-500">High-quality traditional flavors</p></div>
+                    <i class="ph-bold ph-arrow-up-right text-orange-500"></i>
+                </a>
+                <a href="https://maps.app.goo.gl/53QBJUTFUJiXLt6p8" target="_blank" class="flex items-center justify-between p-4 hover:bg-gray-50 transition">
+                    <div><p class="font-bold text-gray-900">Pizzeria Federico</p><p class="text-xs text-gray-500">One of the best pizzas in center</p></div>
+                    <i class="ph-bold ph-arrow-up-right text-orange-500"></i>
+                </a>
+                <a href="https://maps.app.goo.gl/yzHmvRn6pJQM4k6g7" target="_blank" class="flex items-center justify-between p-4 hover:bg-gray-50 transition">
+                    <div><p class="font-bold text-gray-900">Numerosei</p><p class="text-xs text-gray-500">Good Italian cuisine</p></div>
+                    <i class="ph-bold ph-arrow-up-right text-orange-500"></i>
+                </a>
+                <a href="https://maps.app.goo.gl/myjamvF6iKJYMJEJA" target="_blank" class="flex items-center justify-between p-4 hover:bg-gray-50 transition">
+                    <div><p class="font-bold text-gray-900">Pizzeria borgo antico</p><p class="text-xs text-gray-500">Authentic delicious pizza</p></div>
+                    <i class="ph-bold ph-arrow-up-right text-orange-500"></i>
+                </a>
+                <a href="https://maps.app.goo.gl/7bEMw4wgUf73G9V99" target="_blank" class="flex items-center justify-between p-4 hover:bg-gray-50 transition">
+                    <div><p class="font-bold text-gray-900">Pizzeria 2001</p><p class="text-xs text-gray-500">Closest to apartment, good pizza</p></div>
+                    <i class="ph-bold ph-arrow-up-right text-orange-500"></i>
+                </a>
+            </div>
+
+            <!-- 4. If not traditional Italian -->
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden divide-y divide-gray-100">
+                <div class="p-4 bg-red-50"><h3 class="font-bold text-red-900 flex items-center gap-2" data-i18n="catOtherFood"><i class="ph-fill ph-bowl-food text-red-500"></i> If not traditional Italian</h3></div>
+                <a href="https://maps.app.goo.gl/WdtsnraCKjZET1Y77" target="_blank" class="flex items-center justify-between p-4 hover:bg-gray-50 transition">
+                    <div><p class="font-bold text-gray-900">Mr. Dumpling</p><p class="text-xs text-gray-500">Chinese dumpling place</p></div>
+                    <i class="ph-bold ph-arrow-up-right text-red-500"></i>
+                </a>
+                <a href="https://maps.app.goo.gl/rRzG1UeWeMi2z1f9A" target="_blank" class="flex items-center justify-between p-4 hover:bg-gray-50 transition">
+                    <div><p class="font-bold text-gray-900">Sofra</p><p class="text-xs text-gray-500">Turkish restaurant</p></div>
+                    <i class="ph-bold ph-arrow-up-right text-red-500"></i>
+                </a>
+                <a href="https://maps.app.goo.gl/Tf7UyCf4SBxM8fHg8" target="_blank" class="flex items-center justify-between p-4 hover:bg-gray-50 transition">
+                    <div><p class="font-bold text-gray-900">Curcuma</p><p class="text-xs text-gray-500">Indian restaurant</p></div>
+                    <i class="ph-bold ph-arrow-up-right text-red-500"></i>
+                </a>
+            </div>
+
+            <!-- 5. Casual & Trendy -->
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden divide-y divide-gray-100">
+                <div class="p-4 bg-yellow-50"><h3 class="font-bold text-yellow-900 flex items-center gap-2" data-i18n="catCasual"><i class="ph-fill ph-beer-bottle text-yellow-500"></i> Casual & Trendy</h3></div>
+                <a href="https://maps.app.goo.gl/gpV7RftCoDmFKYHL6" target="_blank" class="flex items-center justify-between p-4 hover:bg-gray-50 transition">
+                    <div><p class="font-bold text-gray-900">The Shamrock Irish Pub</p><p class="text-xs text-gray-500">Local favorite, live music</p></div>
+                    <i class="ph-bold ph-arrow-up-right text-yellow-600"></i>
+                </a>
+                <a href="https://maps.app.goo.gl/bWMYYSezzduftT1W8" target="_blank" class="flex items-center justify-between p-4 hover:bg-gray-50 transition">
+                    <div><p class="font-bold text-gray-900">Sottofondo</p><p class="text-xs text-gray-500">Great cocktails</p></div>
+                    <i class="ph-bold ph-arrow-up-right text-yellow-600"></i>
+                </a>
+                <a href="https://maps.app.goo.gl/PLiaZU5rtNc1wh4x5" target="_blank" class="flex items-center justify-between p-4 hover:bg-gray-50 transition">
+                    <div><p class="font-bold text-gray-900">Imbarcadero</p><p class="text-xs text-gray-500">Bar for aperitivo</p></div>
+                    <i class="ph-bold ph-arrow-up-right text-yellow-600"></i>
+                </a>
+                <a href="https://maps.app.goo.gl/joz9wVQ2sWYbExEY7" target="_blank" class="flex items-center justify-between p-4 hover:bg-gray-50 transition">
+                    <div><p class="font-bold text-gray-900">Herba Monstrum Brewery</p><p class="text-xs text-gray-500">Craft beer & burgers</p></div>
+                    <i class="ph-bold ph-arrow-up-right text-yellow-600"></i>
+                </a>
+            </div>
+
+            <!-- 6. For the Sweet Tooth -->
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden divide-y divide-gray-100">
+                <div class="p-4 bg-pink-50"><h3 class="font-bold text-pink-900 flex items-center gap-2" data-i18n="catSweet"><i class="ph-fill ph-ice-cream text-pink-500"></i> For the Sweet Tooth</h3></div>
+                <a href="https://maps.app.goo.gl/iBVPzRYEko6E9tm89" target="_blank" class="flex items-center justify-between p-4 hover:bg-gray-50 transition">
+                    <div><p class="font-bold text-gray-900">Gelateria Capo Horn</p><p class="text-xs text-gray-500">Best gelato on lakefront</p></div>
+                    <i class="ph-bold ph-arrow-up-right text-pink-500"></i>
+                </a>
+                <a href="https://www.google.com/maps/search/?api=1&query=Arti+e+sapori+Lecco" target="_blank" class="flex items-center justify-between p-4 hover:bg-gray-50 transition">
+                    <div><p class="font-bold text-gray-900">Arti e Sapori</p><p class="text-xs text-gray-500">Excellent sweet treats</p></div>
+                    <i class="ph-bold ph-arrow-up-right text-pink-500"></i>
+                </a>
+            </div>
+
+            <!-- 7. Quick Tips -->
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden divide-y divide-gray-100">
+                <div class="p-4 bg-teal-50"><h3 class="font-bold text-teal-900 flex items-center gap-2" data-i18n="catTips"><i class="ph-fill ph-lightbulb text-teal-500"></i> Quick Tips</h3></div>
+                <a href="https://www.google.com/maps/search/?api=1&query=Varenna+Train+Station" target="_blank" class="flex items-center justify-between p-4 hover:bg-gray-50 transition">
+                    <div><p class="font-bold text-gray-900">Train to Varenna</p><p class="text-xs text-gray-500">Beautiful town, 20 min away</p></div>
+                    <i class="ph-bold ph-arrow-up-right text-teal-500"></i>
+                </a>
+                <a href="https://maps.app.goo.gl/GY3o6gmstVFYDAZP6" target="_blank" class="flex items-center justify-between p-4 hover:bg-gray-50 transition">
+                    <div><p class="font-bold text-gray-900">Secret Ferry to Bellagio</p><p class="text-xs text-gray-500">Dramatic mountain views</p></div>
+                    <i class="ph-bold ph-arrow-up-right text-teal-500"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- TAB: CHECKOUT -->
+        <section id="tab-checkout" class="tab-content space-y-6">
+            <div class="text-center py-4">
+                <h2 class="text-2xl font-bold text-gray-900" data-i18n="checkoutTitle">Departure</h2>
+                <p class="text-gray-500 text-sm mt-1" data-i18n="checkoutTimeDesc">Check-out is strictly by <strong>11:00 AM</strong></p>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-2">
+                <!-- Checklist item -->
+                <div class="flex items-start gap-4 p-4">
+                    <i class="ph-fill ph-coins text-2xl text-amber-500 mt-1"></i>
+                    <div>
+                        <h4 class="font-bold text-gray-900 text-sm" data-i18n="cityTax">City Tax</h4>
+                        <p class="text-sm text-gray-600 mt-0.5" data-i18n="cityTaxText">Leave €1.50 per person (over 14 yrs) per night on the table.</p>
+                    </div>
+                </div>
+                <hr class="border-gray-100 mx-4">
+                <div class="flex items-start gap-4 p-4">
+                    <i class="ph-fill ph-key text-2xl text-blue-500 mt-1"></i>
+                    <div>
+                        <h4 class="font-bold text-gray-900 text-sm" data-i18n="keys">Keys Inside</h4>
+                        <p class="text-sm text-gray-600 mt-0.5" data-i18n="keysText">Leave the physical keys inside the apartment.</p>
+                    </div>
+                </div>
+                <hr class="border-gray-100 mx-4">
+                <div class="flex items-start gap-4 p-4">
+                    <i class="ph-fill ph-lock-key text-2xl text-red-500 mt-1"></i>
+                    <div>
+                        <h4 class="font-bold text-gray-900 text-sm" data-i18n="lockDoor">Lock the Door</h4>
+                        <p class="text-sm text-gray-600 mt-0.5" data-i18n="lockDoorText">Close the door and press the <strong>triangle button (▲)</strong> on the keypad.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-6">
+                <p class="font-semibold text-gray-700" data-i18n="safeTravels">Have a safe trip!</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="absolute bottom-0 w-full bg-white/95 backdrop-blur-md border-t border-gray-200 pb-safe pt-2 px-2 z-50 rounded-b-3xl">
+        <div class="flex justify-between items-center">
+            <button onclick="switchTab('arrival')" id="btn-arrival" class="flex-1 flex flex-col items-center p-2 nav-active transition-colors">
+                <i class="ph-fill ph-house text-[24px] mb-1"></i>
+                <span class="text-[10px] font-bold uppercase tracking-wider" data-i18n="navArrival">Arrival</span>
+            </button>
+            <button onclick="switchTab('rules')" id="btn-rules" class="flex-1 flex flex-col items-center p-2 nav-inactive transition-colors">
+                <i class="ph ph-clipboard-text text-[24px] mb-1"></i>
+                <span class="text-[10px] font-bold uppercase tracking-wider" data-i18n="navRules">Rules</span>
+            </button>
+            <button onclick="switchTab('guide')" id="btn-guide" class="flex-1 flex flex-col items-center p-2 nav-inactive transition-colors">
+                <i class="ph ph-map-trifold text-[24px] mb-1"></i>
+                <span class="text-[10px] font-bold uppercase tracking-wider" data-i18n="navGuide">Guide</span>
+            </button>
+            <button onclick="switchTab('checkout')" id="btn-checkout" class="flex-1 flex flex-col items-center p-2 nav-inactive transition-colors">
+                <i class="ph ph-sign-out text-[24px] mb-1"></i>
+                <span class="text-[10px] font-bold uppercase tracking-wider" data-i18n="navCheckout">Checkout</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- JS Logic & Translations -->
+    <script>
+        const translations = {
+            en: {
+                title: "Apartment with<br>Mountain View", address: "Via Santo Stefano 13, Lecco",
+                checkInLabel: "Check-in", checkInTime: "From 15:00", checkOutLabel: "Check-out", checkOutTime: "By 11:00",
+                busInfoTitle: "Bus from Train Station", busInfoText: "<strong>Bus 2 and 8</strong> are the shortest. Bus 5 goes around the city.", openMap: "Open Route in Maps",
+                idRegTitle: "Mandatory ID Registration", idRegText: "According to Italian law, please send IDs or passports for all guests to register on the police platform.", idRegBtn: "Send via WhatsApp",
+                entryTitle: "How to Enter", step1: "1. Intercom", step1Text: 'Ring the intercom marked <strong>"Posta"</strong> to unlock the building door.', step2: "2. Go to 4th Floor", step2Text: "Take the lift to the 4th floor. The apartment is directly in front of the stairs.", step3: "3. Smart Lock Keypad", step3Text: "Ask your host for the entry code. Inside you'll find the physical keys for the bottom door.", step3Lock: 'To lock the door, press the <strong>triangle button (▲)</strong> on the keypad.',
+                emergencyTitle: "Emergency (Police/Ambulance)", garbageTitle: "Garbage Separation", garbageText: "Lecco requires strict recycling. You <strong>MUST</strong> take separated trash to the condominium bins located in the <strong>inside courtyard</strong>.", glass: "Glass", bio: "Bio/Organic", paper: "Paper",
+                rulesTitle: "House Rules", noSmoking: "No Smoking", noSmokingText: "Strictly prohibited inside.", towels: "Towels", towelsText: "Do not use towels to clean anything other than bodies.", cleanliness: "Cleanliness", cleanlinessText: "Leave the apartment as clean as possible. Extra dirty apartments may be subject to additional fees.", quietHours: "Quiet Hours", quietHoursText: "Please respect quiet hours from 22:00 to 08:00.", heating: "Heating", heatingText: "Italian Zone E heating laws apply.",
+                guideTitle: "Lecco Guide", catIcons: "The Icons", catGems: "Hidden Gems", catAuthFood: "Authentic & Traditional Food", catOtherFood: "If not traditional Italian", catCasual: "Casual & Trendy", catSweet: "For the Sweet Tooth", catTips: "Quick Tips",
+                checkoutTitle: "Departure", checkoutTimeDesc: "Check-out is strictly by <strong>11:00 AM</strong>", cityTax: "City Tax", cityTaxText: "Leave €1.50 per person (over 14 yrs) per night on the table.", keys: "Keys Inside", keysText: "Leave the physical keys inside the apartment.", lockDoor: "Lock the Door", lockDoorText: "Close the door and press the <strong>triangle button (▲)</strong> on the keypad.", safeTravels: "Have a safe trip!",
+                navArrival: "Arrival", navRules: "Rules", navGuide: "Guide", navCheckout: "Checkout"
+            },
+            it: {
+                title: "Appartamento con<br>Vista Montagna", address: "Via Santo Stefano 13, Lecco",
+                checkInLabel: "Check-in", checkInTime: "Dalle 15:00", checkOutLabel: "Check-out", checkOutTime: "Entro le 11:00",
+                busInfoTitle: "Autobus dalla Stazione", busInfoText: "<strong>Gli autobus 2 e 8</strong> sono i più diretti. Il numero 5 fa il giro della città.", openMap: "Apri Mappa",
+                idRegTitle: "Registrazione Obbligatoria dei Documenti", idRegText: "Secondo la legge italiana, vi preghiamo di inviare i documenti d'identità o i passaporti di tutti gli ospiti per la registrazione sul portale della polizia.", idRegBtn: "Invia tramite WhatsApp",
+                entryTitle: "Come Entrare", step1: "1. Citofono", step1Text: 'Suona il citofono <strong>"Posta"</strong> per aprire il portone del palazzo.', step2: "2. Vai al 4° Piano", step2Text: "Prendi l'ascensore fino al 4° piano. L'appartamento è di fronte alle scale.", step3: "3. Tastierino", step3Text: "Chiedi al tuo host il codice di accesso. All'interno troverai le chiavi per il portone in basso.", step3Lock: 'Per chiudere la porta, premi il <strong>tasto triangolo (▲)</strong> sul tastierino.',
+                emergencyTitle: "Emergenza (Polizia/Ambulanza)", garbageTitle: "Raccolta Differenziata", garbageText: "Lecco richiede una rigida raccolta differenziata. <strong>DEVI</strong> portare i rifiuti separati nei bidoni condominiali nel <strong>cortile interno</strong>.", glass: "Vetro", bio: "Umido", paper: "Carta",
+                rulesTitle: "Regole della Casa", noSmoking: "Vietato Fumare", noSmokingText: "Severamente vietato all'interno.", towels: "Asciugamani", towelsText: "Non utilizzare gli asciugamani per pulire altro che il corpo.", cleanliness: "Pulizia", cleanlinessText: "Lasciare l'appartamento il più pulito possibile. Un livello di sporco eccessivo comporta costi aggiuntivi.", quietHours: "Ore di Silenzio", quietHoursText: "Si prega di rispettare il silenzio dalle 22:00 alle 08:00.", heating: "Riscaldamento", heatingText: "Si applicano le leggi italiane sul riscaldamento (Zona E).",
+                guideTitle: "Guida di Lecco", catIcons: "Le Icone", catGems: "Gemme Nascoste", catAuthFood: "Cibo Autentico e Tradizionale", catOtherFood: "Cucina Etnica", catCasual: "Casual e di Tendenza", catSweet: "Per i Golosi", catTips: "Consigli Rapidi",
+                checkoutTitle: "Partenza", checkoutTimeDesc: "Il check-out è rigorosamente entro le <strong>11:00</strong>", cityTax: "Tassa di soggiorno", cityTaxText: "Lasciare €1,50 a persona (sopra 14 anni) a notte sul tavolo.", keys: "Chiavi all'interno", keysText: "Lasciare le chiavi fisiche all'interno dell'appartamento.", lockDoor: "Chiudi la porta", lockDoorText: "Chiudi la porta e premi il <strong>tasto triangolo (▲)</strong> sul tastierino.", safeTravels: "Buon viaggio!",
+                navArrival: "Arrivo", navRules: "Regole", navGuide: "Guida", navCheckout: "Partenza"
+            },
+            es: {
+                title: "Apartamento con<br>Vista a la Montaña", address: "Via Santo Stefano 13, Lecco",
+                checkInLabel: "Entrada", checkInTime: "Desde 15:00", checkOutLabel: "Salida", checkOutTime: "Hasta 11:00",
+                busInfoTitle: "Autobús desde la Estación", busInfoText: "<strong>Los autobuses 2 y 8</strong> son los más rápidos. El 5 rodea la ciudad.", openMap: "Abrir Mapa",
+                idRegTitle: "Registro Obligatorio de Identidad", idRegText: "De acuerdo con la ley italiana, envíe los documentos de identidad o pasaportes de todos los huéspedes para registrarlos en la plataforma de la policía.", idRegBtn: "Enviar por WhatsApp",
+                entryTitle: "Cómo Entrar", step1: "1. Intercomunicador", step1Text: 'Toca el intercomunicador <strong>"Posta"</strong> para abrir la puerta.', step2: "2. Ve al 4º Piso", step2Text: "Toma el ascensor al 4º piso. El apartamento está frente a las escaleras.", step3: "3. Teclado", step3Text: "Solicita a tu anfitrión el código de acceso. Dentro están las llaves.", step3Lock: 'Para cerrar, presiona el <strong>botón del triángulo (▲)</strong> en el teclado.',
+                emergencyTitle: "Emergencias", garbageTitle: "Reciclaje", garbageText: "Lecco requiere reciclaje estricto. <strong>DEBE</strong> llevar la basura separada a los contenedores en el <strong>patio interior</strong>.", glass: "Vidrio", bio: "Orgánico", paper: "Papel",
+                rulesTitle: "Reglas", noSmoking: "No Fumar", noSmokingText: "Estrictamente prohibido dentro.", towels: "Toallas", towelsText: "No use toallas para limpiar maquillaje u otros objetos.", cleanliness: "Limpieza", cleanlinessText: "Deje el apartamento limpio. La suciedad excesiva puede generar cargos extras.", quietHours: "Horas de Silencio", quietHoursText: "Respete las horas de silencio de 22:00 a 08:00.", heating: "Calefacción", heatingText: "Se aplican las leyes de calefacción italianas (Zona E).",
+                guideTitle: "Guía de Lecco", catIcons: "Los Iconos", catGems: "Gemas Ocultas", catAuthFood: "Comida Auténtica y Tradicional", catOtherFood: "Si no es comida italiana", catCasual: "Casual y de Moda", catSweet: "Para los Golosos", catTips: "Consejos Rápidos",
+                checkoutTitle: "Salida", checkoutTimeDesc: "La salida es estrictamente a las <strong>11:00 AM</strong>", cityTax: "Tasa Turística", cityTaxText: "Deje 1,50 € por persona (mayores de 14 años) por noche en la mesa.", keys: "Llaves dentro", keysText: "Deje las llaves físicas dentro del apartamento.", lockDoor: "Cerrar puerta", lockDoorText: "Cierre la puerta y presione el <strong>triángulo (▲)</strong> en el teclado.", safeTravels: "¡Buen viaje!",
+                navArrival: "Llegada", navRules: "Reglas", navGuide: "Guía", navCheckout: "Salida"
+            },
+            fr: {
+                title: "Appartement avec<br>Vue Montagne", address: "Via Santo Stefano 13, Lecco",
+                checkInLabel: "Arrivée", checkInTime: "Dès 15h00", checkOutLabel: "Départ", checkOutTime: "Avant 11h00",
+                busInfoTitle: "Bus depuis la Gare", busInfoText: "<strong>Les bus 2 et 8</strong> sont les plus directs. Le 5 fait le tour de la ville.", openMap: "Ouvrir la Carte",
+                idRegTitle: "Enregistrement des Pièces d'Identité", idRegText: "Conformément à la loi italienne, veuillez envoyer les pièces d'identité ou passeports de tous les invités pour l'enregistrement sur la plateforme de la police.", idRegBtn: "Envoyer via WhatsApp",
+                entryTitle: "Comment Entrer", step1: "1. Interphone", step1Text: 'Sonnez à <strong>"Posta"</strong> pour ouvrir la porte de l\'immeuble.', step2: "2. Allez au 4ème Étage", step2Text: "Prenez l'ascenseur jusqu'au 4ème étage. C'est en face des escaliers.", step3: "3. Clavier", step3Text: "Demandez le code d'accès à votre hôte. Les clés physiques sont à l'intérieur.", step3Lock: 'Pour verrouiller, appuyez sur le <strong>bouton triangle (▲)</strong> du clavier.',
+                emergencyTitle: "Urgences", garbageTitle: "Tri des Déchets", garbageText: "Lecco exige le tri. Vous <strong>DEVEZ</strong> apporter vos déchets séparés aux poubelles dans la <strong>cour intérieure</strong>.", glass: "Verre", bio: "Bio/Organique", paper: "Papier",
+                rulesTitle: "Règles", noSmoking: "Non Fumeur", noSmokingText: "Strictement interdit à l'intérieur.", towels: "Serviettes", towelsText: "Ne pas utiliser les serviettes pour nettoyer autre chose que le corps.", cleanliness: "Propreté", cleanlinessText: "Laissez l'appartement propre. Une saleté excessive peut entraîner des frais supplémentaires.", quietHours: "Heures de Silence", quietHoursText: "Veuillez respecter le silence de 22h00 à 08h00.", heating: "Chauffage", heatingText: "Lois italiennes sur le chauffage (Zone E).",
+                guideTitle: "Guide de Lecco", catIcons: "Les Icônes", catGems: "Joyaux Cachés", catAuthFood: "Nourriture Authentique et Traditionnelle", catOtherFood: "Si ce n'est pas italien", catCasual: "Décontracté et Branché", catSweet: "Pour les Gourmands", catTips: "Astuces Rapides",
+                checkoutTitle: "Départ", checkoutTimeDesc: "Le départ est strictement avant <strong>11h00</strong>", cityTax: "Taxe de séjour", cityTaxText: "Laissez 1,50 € par personne (+14 ans) par nuit sur la table.", keys: "Clés à l'intérieur", keysText: "Laissez les clés physiques à l'intérieur.", lockDoor: "Verrouiller", lockDoorText: "Fermez la porte et appuyez sur le <strong>triangle (▲)</strong> du clavier.", safeTravels: "Bon voyage !",
+                navArrival: "Arrivée", navRules: "Règles", navGuide: "Guide", navCheckout: "Départ"
+            },
+            de: {
+                title: "Apartment mit<br>Bergblick", address: "Via Santo Stefano 13, Lecco",
+                checkInLabel: "Check-in", checkInTime: "Ab 15:00", checkOutLabel: "Check-out", checkOutTime: "Bis 11:00",
+                busInfoTitle: "Bus vom Bahnhof", busInfoText: "<strong>Bus 2 und 8</strong> sind am kürzesten. Bus 5 fährt um die Stadt.", openMap: "Karte öffnen",
+                idRegTitle: "Obligatorische Ausweisregistrierung", idRegText: "Nach italienischem Recht senden Sie bitte die Ausweise oder Reisepässe aller Gäste zur Registrierung auf der Polizei-Plattform.", idRegBtn: "Über WhatsApp senden",
+                entryTitle: "Zugang", step1: "1. Gegensprechanlage", step1Text: 'Klingeln Sie bei <strong>"Posta"</strong>, um die Tür zu öffnen.', step2: "2. 4. Stock", step2Text: "Fahren Sie in den 4. Stock. Die Wohnung ist direkt vor der Treppe.", step3: "3. Tastenfeld", step3Text: "Fragen Sie Ihren Gastgeber nach dem Zugangscode. Drinnen finden Sie den Schlüssel.", step3Lock: 'Zum Abschließen die Tür schließen und die <strong>Dreieck-Taste (▲)</strong> drücken.',
+                emergencyTitle: "Notfall (Polizei/Krankenwagen)", garbageTitle: "Mülltrennung", garbageText: "Strenge Mülltrennung! Sie <strong>MÜSSEN</strong> den getrennten Müll in die Tonnen im <strong>Innenhof</strong> bringen.", glass: "Glas", bio: "Bio/Organisch", paper: "Papier",
+                rulesTitle: "Hausregeln", noSmoking: "Rauchen verboten", noSmokingText: "Drinnen strengstens verboten.", towels: "Handtücher", towelsText: "Handtücher nur für den Körper verwenden.", cleanliness: "Sauberkeit", cleanlinessText: "Wohnung sauber hinterlassen. Bei starker Verschmutzung fallen Gebühren an.", quietHours: "Ruhezeiten", quietHoursText: "Bitte respektieren Sie die Ruhezeiten von 22:00 bis 08:00 Uhr.", heating: "Heizung", heatingText: "Es gelten die italienischen Heizgesetze (Zone E).",
+                guideTitle: "Lecco Guide", catIcons: "Die Ikonen", catGems: "Geheimtipps", catAuthFood: "Authentisches & traditionelles Essen", catOtherFood: "Wenn nicht italienisch", catCasual: "Lässig & Trendy", catSweet: "Für Naschkatzen", catTips: "Kurze Tipps",
+                checkoutTitle: "Abreise", checkoutTimeDesc: "Check-out ist streng bis <strong>11:00 Uhr</strong>", cityTax: "Kurtaxe", cityTaxText: "Lassen Sie 1,50 € pro Person (über 14 J.) pro Nacht auf dem Tisch.", keys: "Schlüssel drinnen", keysText: "Physische Schlüssel in der Wohnung lassen.", lockDoor: "Tür abschließen", lockDoorText: "Tür schließen und die <strong>Dreieck-Taste (▲)</strong> drücken.", safeTravels: "Gute Reise!",
+                navArrival: "Ankunft", navRules: "Regeln", navGuide: "Guide", navCheckout: "Abreise"
+            },
+            pl: {
+                title: "Apartament z<br>Widokiem na Góry", address: "Via Santo Stefano 13, Lecco",
+                checkInLabel: "Zameldowanie", checkInTime: "Od 15:00", checkOutLabel: "Wymeldowanie", checkOutTime: "Do 11:00",
+                busInfoTitle: "Autobus z dworca", busInfoText: "<strong>Autobusy 2 i 8</strong> jadą najkrócej. Autobus 5 jedzie dookoła miasta.", openMap: "Otwórz mapę",
+                idRegTitle: "Obowiązkowa Rejestracja", idRegText: "Zgodnie z włoskim prawem, prosimy o przesłanie dowodów osobistych lub paszportów wszystkich gości w celu rejestracji na platformie policyjnej.", idRegBtn: "Wyślij przez WhatsApp",
+                entryTitle: "Jak wejść", step1: "1. Domofon", step1Text: 'Zadzwoń domofonem opisanym <strong>"Posta"</strong>, aby otworzyć drzwi do budynku.', step2: "2. Idź na 4 piętro", step2Text: "Wjedź windą na 4 piętro. Apartament znajduje się na wprost schodów.", step3: "3. Klawiatura (Klamka)", step3Text: "Poproś gospodarza o kod dostępu. Wewnątrz znajdziesz fizyczne klucze.", step3Lock: 'Aby zamknąć drzwi, naciśnij <strong>przycisk trójkąta (▲)</strong> na klawiaturze.',
+                emergencyTitle: "Pogotowie / Policja", garbageTitle: "Segregacja śmieci", garbageText: "W Lecco obowiązuje ścisła segregacja. <strong>MUSISZ</strong> zanieść posegregowane śmieci do pojemników znajdujących się na <strong>wewnętrznym dziedzińcu</strong>.", glass: "Szkło", bio: "Bio/Organiczne", paper: "Papier",
+                rulesTitle: "Zasady Domu", noSmoking: "Zakaz Palenia", noSmokingText: "Surowo zabronione wewnątrz.", towels: "Ręczniki", towelsText: "Nie używaj ręczników do czyszczenia czegokolwiek poza ciałem.", cleanliness: "Czystość", cleanlinessText: "Zostaw apartament możliwie czysty. Dodatkowe opłaty za duże zabrudzenia.", quietHours: "Cisza nocna", quietHoursText: "Prosimy o zachowanie ciszy w godzinach 22:00-08:00.", heating: "Ogrzewanie", heatingText: "Obowiązują włoskie przepisy dotyczące ogrzewania (Strefa E).",
+                guideTitle: "Przewodnik po Lecco", catIcons: "Ikony", catGems: "Ukryte Perełki", catAuthFood: "Autentyczne i tradycyjne jedzenie", catOtherFood: "Inne smaki", catCasual: "Codzienne i modne", catSweet: "Dla łasuchów", catTips: "Szybkie Wskazówki",
+                checkoutTitle: "Wymeldowanie", checkoutTimeDesc: "Wymeldowanie ściśle do <strong>11:00 rano</strong>", cityTax: "Podatek Miejski", cityTaxText: "Zostaw na stole 1,50 € za osobę (powyżej 14 lat) za noc.", keys: "Klucze wewnątrz", keysText: "Zostaw fizyczne klucze w apartamencie.", lockDoor: "Zamknij drzwi", lockDoorText: "Zamknij drzwi i naciśnij <strong>przycisk trójkąta (▲)</strong> na klawiaturze.", safeTravels: "Bezpiecznej podróży!",
+                navArrival: "Przyjazd", navRules: "Zasady", navGuide: "Przewodnik", navCheckout: "Wyjazd"
+            },
+            ru: {
+                title: "Апартаменты с<br>Видом на Горы", address: "Via Santo Stefano 13, Лекко",
+                checkInLabel: "Заезд", checkInTime: "С 15:00", checkOutLabel: "Выезд", checkOutTime: "До 11:00",
+                busInfoTitle: "Автобус от вокзала", busInfoText: "<strong>Автобусы 2 и 8</strong> - самые быстрые. Автобус 5 едет вокруг города.", openMap: "Открыть Карту",
+                idRegTitle: "Обязательная Регистрация", idRegText: "Согласно законам Италии, пожалуйста, отправьте удостоверения личности или паспорта всех гостей для регистрации в полиции.", idRegBtn: "Отправить в WhatsApp",
+                entryTitle: "Как войти", step1: "1. Домофон", step1Text: 'Нажмите кнопку <strong>"Posta"</strong>, чтобы открыть главную дверь.', step2: "2. 4-й этаж", step2Text: "Поднимитесь на лифте на 4-й этаж. Квартира прямо напротив лестницы.", step3: "3. Кодовый замок", step3Text: "Попросите у хозяина код доступа. Внутри вы найдете ключи.", step3Lock: 'Чтобы закрыть дверь, нажмите кнопку <strong>треугольник (▲)</strong> на панели.',
+                emergencyTitle: "Экстренные службы", garbageTitle: "Раздельный сбор мусора", garbageText: "В Лекко строгие правила. Вы <strong>ДОЛЖНЫ</strong> выносить разделенный мусор в баки во <strong>внутреннем дворе</strong>.", glass: "Стекло", bio: "Органика", paper: "Бумага",
+                rulesTitle: "Правила дома", noSmoking: "Не курить", noSmokingText: "Строго запрещено внутри квартиры.", towels: "Полотенца", towelsText: "Не используйте полотенца для уборки или снятия макияжа.", cleanliness: "Чистота", cleanlinessText: "Пожалуйста, оставьте квартиру в чистоте. За сильную грязь возможен штраф.", quietHours: "Тихие часы", quietHoursText: "Пожалуйста, соблюдайте тишину с 22:00 до 08:00.", heating: "Отопление", heatingText: "Действуют законы Италии об отоплении (Зона E).",
+                guideTitle: "Гид по Лекко", catIcons: "Знаковые места", catGems: "Скрытые жемчужины", catAuthFood: "Аутентичная и традиционная еда", catOtherFood: "Если не итальянская", catCasual: "Казуальные и модные", catSweet: "Для сладкоежек", catTips: "Полезные советы",
+                checkoutTitle: "Выезд", checkoutTimeDesc: "Выезд строго до <strong>11:00 утра</strong>", cityTax: "Городской налог", cityTaxText: "Оставьте 1,50 € за человека (старше 14 лет) за ночь на столе.", keys: "Ключи внутри", keysText: "Оставьте физические ключи внутри квартиры.", lockDoor: "Заприте дверь", lockDoorText: "Закройте дверь и нажмите <strong>треугольник (▲)</strong> на кодовой панели.", safeTravels: "Счастливого пути!",
+                navArrival: "Заезд", navRules: "Правила", navGuide: "Гид", navCheckout: "Выезд"
+            },
+            uk: {
+                title: "Апартаменти з<br>Видом на Гори", address: "Via Santo Stefano 13, Лекко",
+                checkInLabel: "Заїзд", checkInTime: "З 15:00", checkOutLabel: "Виїзд", checkOutTime: "До 11:00",
+                busInfoTitle: "Автобус від вокзалу", busInfoText: "<strong>Автобуси 2 та 8</strong> - найшвидші. Автобус 5 їде навколо міста.", openMap: "Відкрити Карту",
+                idRegTitle: "Обов'язкова Реєстрація", idRegText: "Згідно з законами Італії, будь ласка, надішліть посвідчення особи або паспорти всіх гостей для реєстрації в поліції.", idRegBtn: "Надіслати у WhatsApp",
+                entryTitle: "Як увійти", step1: "1. Домофон", step1Text: 'Натисніть кнопку <strong>"Posta"</strong>, щоб відкрити головні двері.', step2: "2. 4-й поверх", step2Text: "Підніміться ліфтом на 4-й поверх. Квартира прямо навпроти сходів.", step3: "3. Кодовий замок", step3Text: "Попросіть у господаря код доступу. Всередині ви знайдете ключі.", step3Lock: 'Щоб зачинити двері, натисніть кнопку <strong>трикутник (▲)</strong> на панелі.',
+                emergencyTitle: "Екстрені служби", garbageTitle: "Роздільний збір сміття", garbageText: "У Лекко суворі правила. Ви <strong>ПОВИННІ</strong> виносити розділене сміття в баки у <strong>внутрішньому дворі</strong>.", glass: "Скло", bio: "Органіка", paper: "Папір",
+                rulesTitle: "Правила дому", noSmoking: "Не палити", noSmokingText: "Суворо заборонено всередині.", towels: "Рушники", towelsText: "Не використовуйте рушники для прибирання.", cleanliness: "Чистота", cleanlinessText: "Будь ласка, залиште квартиру в чистоті. За сильний бруд можливий штраф.", quietHours: "Тихі години", quietHoursText: "Будь ласка, дотримуйтесь тиші з 22:00 до 08:00.", heating: "Опалення", heatingText: "Діють закони Італії про опалення (Зона E).",
+                guideTitle: "Гід по Лекко", catIcons: "Знакові місця", catGems: "Приховані перлини", catAuthFood: "Автентична та традиційна їжа", catOtherFood: "Якщо не італійська", catCasual: "Повсякденні та модні", catSweet: "Для ласунів", catTips: "Корисні поради",
+                checkoutTitle: "Виїзд", checkoutTimeDesc: "Виїзд суворо до <strong>11:00 ранку</strong>", cityTax: "Міський податок", cityTaxText: "Залиште 1,50 € за особу (старше 14 років) за ніч на столі.", keys: "Ключі всередині", keysText: "Залиште фізичні ключі всередині квартири.", lockDoor: "Замкніть двері", lockDoorText: "Закрийте двері та натисніть <strong>трикутник (▲)</strong> на кодовій панелі.", safeTravels: "Щасливої дороги!",
+                navArrival: "Заїзд", navRules: "Правила", navGuide: "Гід", navCheckout: "Виїзд"
+            }
+        };
+
+        function changeLanguage(lang) {
+            const strings = translations[lang];
+            if (!strings) return;
+            
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (strings[key]) {
+                    element.innerHTML = strings[key];
+                }
+            });
+        }
+
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            const tabs = ['arrival', 'rules', 'guide', 'checkout'];
+            tabs.forEach(tab => {
+                const btn = document.getElementById('btn-' + tab);
+                btn.classList.remove('nav-active');
+                btn.classList.add('nav-inactive');
+                
+                const icon = btn.querySelector('i');
+                icon.classList.remove('ph-fill');
+                icon.classList.add('ph');
+            });
+
+            document.getElementById('tab-' + tabName).classList.add('active');
+            
+            const activeBtn = document.getElementById('btn-' + tabName);
+            activeBtn.classList.remove('nav-inactive');
+            activeBtn.classList.add('nav-active');
+            
+            const activeIcon = activeBtn.querySelector('i');
+            activeIcon.classList.remove('ph');
+            activeIcon.classList.add('ph-fill');
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
